@@ -1,0 +1,36 @@
+﻿
+@using Assignment_ToDoWebApp.ToDoWeb.Models.Entities
+@model IEnumerable<ToDo>
+@{
+    ViewData["Title"] = "Home Page";
+    var totalToDos= @Model.Count();
+    var totalIncompleteToDos = @Model.Where(p=>p.IsCompleted==false).Count();
+    var totalCompletedTodos = totalToDos-totalIncompleteToDos;
+}
+
+
+
+<p class='link link-success'>Total Todos #@totalToDos</p>
+<p>Total Incomplete ToDos #@totalIncompleteToDos</p>
+<p>Total Completed ToDos #@totalCompletedTodos</p>
+
+<a class="btn btn-primary">Add ToDo</a>
+
+<table class = 'table table-responsive table-stripped'>
+    <thead>
+        <th>Id</th>
+        <th>Detail</th>
+        <th>Is Completed</th>
+        <th>Completion Date</th>
+    </thead>
+    <tbody>        
+            @foreach(var item in Model){
+                <tr>@item.Id</tr>
+                <tr>@item.Detail</tr>
+                <tr>@item.IsCompleted</tr>
+                <tr>@item.CompletionDate</tr>
+                <tr><a href='' class='btn btn-xs btn-success'></a></tr>
+            }
+        
+    </tbody>
+</table>
